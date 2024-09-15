@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:geminiapp/Features/home/presentation/view/home_screen.dart';
+import 'package:geminiapp/Features/splash/presentation/view/splash_screen.dart';
 
-abstract class AppRouter {
-  static const String kSplashScreen = '/';
-  static final router = GoRouter(routes: [
-    GoRoute(
-      path: kSplashScreen,
-      builder: (context, state) => const Scaffold(),
-    ),
-  ]);
+Route<dynamic> onGenerateRoute(RouteSettings settings) {
+  switch (settings.name) {
+    case SplashScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const SplashScreen());
+    case HomeScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const HomeScreen());
+    default:
+      return MaterialPageRoute(builder: (context) => const Scaffold());
+  }
 }
